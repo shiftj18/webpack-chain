@@ -1,5 +1,5 @@
 {
-  "name": "webpack5-chain",
+  "name": "webpack-chain-v5",
   "version": "1.0.1",
   "main": "src/Config.js",
   "typings": "types/index.d.ts",
