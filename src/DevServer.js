@@ -50,7 +50,7 @@ module.exports = class extends ChainedMap {
       'sockHost',
       'sockPath',
       'sockPort',
-      'staticOptions',
+      'static',
       'stats',
       'stdin',
       'transportMode',
