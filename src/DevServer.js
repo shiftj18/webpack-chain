@@ -50,7 +50,6 @@ module.exports = class extends ChainedMap {
       'sockHost',
       'sockPath',
       'sockPort',
-      'static',
       'stats',
       'stdin',
       'transportMode',
@@ -58,6 +57,16 @@ module.exports = class extends ChainedMap {
       'watchContentBase',
       'watchOptions',
       'writeToDisk',
+      'client',
+      'ipc',
+      'magicHtml',
+      'devMiddleware',
+      'server',
+      'setupExitSignals',
+      'setupMiddlewares',
+      'static',
+      'watchFiles',
+      'webSocketServer',
     ]);
   }
 

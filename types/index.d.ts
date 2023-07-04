@@ -267,7 +267,7 @@ declare namespace Config {
     headers(value: { [header: string]: string }): this;
     historyApiFallback(value: boolean | any): this;
     host(value: string): this;
-    hot(value: boolean): this;
+    hot(value: boolean | 'only'): this;
     hotOnly(value: boolean): this;
     http2(value: boolean): this;
     https(value: boolean | https.ServerOptions): this;
@@ -321,6 +321,16 @@ declare namespace Config {
     watchContentBase(value: boolean): this;
     watchOptions(value: Configuration['watchOptions']): this;
     writeToDisk(value: boolean): this;
+    client(value: client): this;
+    devMiddleware(value: object): this;
+    ipc(value: boolean | string): this;
+    magicHtml(value: boolean): this;
+    server(value: string | object): this;
+    setupExitSignals(value: boolean): this;
+    setupMiddlewares(value: (middlewares: any, devServer: any) => void): this;
+    static(value: boolean | string | static | Array<string> | Array<static>): this;
+    watchFiles(value: string | object | Array<string> | Array<object>): this;
+    webSocketServer(value: string | function | object): this;
   }
 
   type WebpackPerformance = Exclude<
