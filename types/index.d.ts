@@ -350,7 +350,7 @@ declare namespace Config {
     setupMiddlewares(value: (middlewares: any, devServer: any) => void): this;
     static(value: boolean | string | DevServerStatic | Array<string> | Array<DevServerStatic>): this;
     watchFiles(value: string | object | Array<string> | Array<object>): this;
-    webSocketServer(value: string | function | object): this;
+    webSocketServer(value: string | Function | object): this;
   }
 
   type WebpackPerformance = Exclude<
