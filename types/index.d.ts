@@ -380,6 +380,8 @@ declare namespace Config {
       { [key: string]: string | false | string[] }
     >;
     byDependency: TypedChainedMap<this, WebpackResolve['byDependency']>;
+    conditionNames: TypedChainedSet<this, WebpackResolve['conditionNames'][number]>;
+    extensionAlias: TypedChainedMap<this, WebpackResolve['extensionAlias']>;
 
     cachePredicate(value: WebpackResolve['cachePredicate']): this;
     cacheWithContext(value: WebpackResolve['cacheWithContext']): this;
@@ -388,6 +390,7 @@ declare namespace Config {
     unsafeCache(value: WebpackResolve['unsafeCache']): this;
     preferRelative(value: WebpackResolve['preferRelative']): this;
     preferAbsolute(value: WebpackResolve['preferAbsolute']): this;
+    useSyncFileSystemCalls(value: WebpackResolve['useSyncFileSystemCalls']): this;
 
     plugin(name: string): Plugin<this, ResolvePlugin>;
   }

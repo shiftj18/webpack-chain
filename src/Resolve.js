@@ -19,6 +19,8 @@ module.exports = class extends ChainedMap {
     this.plugins = new ChainedMap(this);
     this.fallback = new ChainedMap(this);
     this.byDependency = new ChainedMap(this);
+    this.conditionNames = new ChainedSet(this);
+    this.extensionAlias = new ChainedMap(this);
     this.extend([
       'cachePredicate',
       'cacheWithContext',
@@ -27,6 +29,7 @@ module.exports = class extends ChainedMap {
       'unsafeCache',
       'preferRelative',
       'preferAbsolute',
+      'useSyncFileSystemCalls'
     ]);
   }
 
@@ -51,8 +54,10 @@ module.exports = class extends ChainedMap {
         importsFields: this.importsFields.values(),
         restrictions: this.restrictions.values(),
         roots: this.roots.values(),
+        conditionNames: this.conditionNames.values(),
         fallback: this.fallback.entries(),
         byDependency: this.byDependency.entries(),
+        extensionAlias: this.extensionAlias.entries(),
         plugins: this.plugins.values().map((plugin) => plugin.toConfig()),
       }),
     );
