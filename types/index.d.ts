@@ -245,7 +245,25 @@ declare namespace Config {
   }
 
   // await for @types/webpack-dev-server update do v4 to remove all any
-  class DevServer extends ChainedMap<Config> {
+
+
+  type DevServerClient = {
+    logging?: 'log' | 'info' | 'warn' | 'error' | 'none' | 'verbose';
+    overlay?: boolean | { error: boolean, warn: boolean };
+    progress?: boolean;
+    reconnect?: boolean | number;
+    webSocketTransport?: 'ws' | 'sockjs' | string;
+    webSocketURL?: string | object;
+  }
+  
+  type DevServerStatic = {
+    directory?: string;
+    staticOptions?: object;
+    publicPath?: string;
+    serveIndex?: boolean;
+    watch?: boolean | object;
+  }
+    class DevServer extends ChainedMap<Config> {
     allowedHosts: TypedChainedSet<this, string>;
     after(value: (app: any, server: any, compiler: Compiler) => void): this;
     before(value: (app: any, server: any, compiler: Compiler) => void): this;
@@ -323,14 +341,14 @@ declare namespace Config {
     watchContentBase(value: boolean): this;
     watchOptions(value: Configuration['watchOptions']): this;
     writeToDisk(value: boolean): this;
-    client(value: client): this;
+    client(value: DevServerClient): this;
     devMiddleware(value: object): this;
     ipc(value: boolean | string): this;
     magicHtml(value: boolean): this;
     server(value: string | object): this;
     setupExitSignals(value: boolean): this;
     setupMiddlewares(value: (middlewares: any, devServer: any) => void): this;
-    static(value: boolean | string | static | Array<string> | Array<static>): this;
+    static(value: boolean | string | DevServerStatic | Array<string> | Array<DevServerStatic>): this;
     watchFiles(value: string | object | Array<string> | Array<object>): this;
     webSocketServer(value: string | function | object): this;
   }
