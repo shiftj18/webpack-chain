@@ -425,6 +425,7 @@ declare namespace Config {
     resource(value: WebpackRuleSet['resource']): this;
     resourceQuery(value: WebpackRuleSet['resourceQuery']): this;
     sideEffects(value: WebpackRuleSet['sideEffects']): this;
+    scheme(value: WebpackRuleSet['scheme']): this;
     test(value: WebpackRuleSet['test']): this;
     type(value: WebpackRuleSet['type']): this;
 

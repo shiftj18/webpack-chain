@@ -44,6 +44,7 @@ const Rule = Orderable(
         'sideEffects',
         'test',
         'type',
+        'scheme',
       ]);
     }
 
