@@ -49,6 +49,8 @@ module.exports = class extends ChainedMap {
       'iife',
       'module',
       'clean',
+      'asyncChunks',
+      'trustedTypes',
     ]);
   }
 };

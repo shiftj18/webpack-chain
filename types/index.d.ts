@@ -240,6 +240,8 @@ declare namespace Config {
     iife(value: WebpackOutput['iife']): this;
     module(value: WebpackOutput['module']): this;
     clean(value: WebpackOutput['clean']): this;
+    asyncChunks(value: WebpackOutput['asyncChunks']): this;
+    trustedTypes(value: WebpackOutput['trustedTypes']): this;
   }
 
   // await for @types/webpack-dev-server update do v4 to remove all any
