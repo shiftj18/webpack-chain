@@ -341,14 +341,14 @@ declare namespace Config {
     watchContentBase(value: boolean): this;
     watchOptions(value: Configuration['watchOptions']): this;
     writeToDisk(value: boolean): this;
-    client(value: DevServerClient): this;
+    client: ChainedMap<this>;
     devMiddleware(value: object): this;
     ipc(value: boolean | string): this;
     magicHtml(value: boolean): this;
-    server(value: string | object): this;
+    server: ChainedMap<this>;
     setupExitSignals(value: boolean): this;
     setupMiddlewares(value: (middlewares: any, devServer: any) => void): this;
-    static(value: boolean | string | DevServerStatic | Array<string> | Array<DevServerStatic>): this;
+    static: ChainedMap<this>;
     watchFiles(value: string | object | Array<string> | Array<object>): this;
     webSocketServer(value: string | Function | object): this;
   }

@@ -4,8 +4,10 @@ const ChainedSet = require('./ChainedSet');
 module.exports = class extends ChainedMap {
   constructor(parent) {
     super(parent);
-
     this.allowedHosts = new ChainedSet(this);
+    this.client = new ChainedMap(this);
+    this.static = new ChainedMap(this);
+    this.server = new ChainedMap(this);
 
     this.extend([
       'after',
@@ -57,14 +59,11 @@ module.exports = class extends ChainedMap {
       'watchContentBase',
       'watchOptions',
       'writeToDisk',
-      'client',
       'ipc',
       'magicHtml',
       'devMiddleware',
-      'server',
       'setupExitSignals',
       'setupMiddlewares',
-      'static',
       'watchFiles',
       'webSocketServer',
     ]);
@@ -73,6 +72,9 @@ module.exports = class extends ChainedMap {
   toConfig() {
     return this.clean({
       allowedHosts: this.allowedHosts.values(),
+      client: this.client.entries(),
+      static: this.static.entries(),
+      server: this.server.entries(),
       ...(this.entries() || {}),
     });
   }
