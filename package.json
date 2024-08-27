@@ -1,9 +1,9 @@
 {
-  "name": "webpack-chain",
-  "version": "7.0.0-dev",
+  "name": "webpack5p-chain",
+  "version": "7.0.0",
   "main": "src/Config.js",
   "typings": "types/index.d.ts",
-  "repository": "ezreal09/webpack5-chain",
+  "repository": "shiftj18/webpack-chain",
   "keywords": [
     "webpack",
     "config",
@@ -18,7 +18,7 @@
     "src",
     "types/*.d.ts"
   ],
-  "author": "Eli Perelman <eli@eliperelman.com>",
+  "author": "shiftj18 <stjkl@foxmail.com>",
   "license": "MPL-2.0",
   "scripts": {
     "fix": "yarn lint:fix && yarn style:fix",
