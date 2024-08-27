@@ -3,7 +3,7 @@
   "version": "7.0.0-dev",
   "main": "src/Config.js",
   "typings": "types/index.d.ts",
-  "repository": "sorrycc/webpack-chain",
+  "repository": "ezreal09/webpack5-chain",
   "keywords": [
     "webpack",
     "config",

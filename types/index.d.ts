@@ -243,13 +243,28 @@ declare namespace Config {
     iife(value: WebpackOutput['iife']): this;
     module(value: WebpackOutput['module']): this;
     clean(value: WebpackOutput['clean']): this;
+    asyncChunks(value: WebpackOutput['asyncChunks']): this;
+    trustedTypes(value: WebpackOutput['trustedTypes']): this;
   }
 
-  type DevServerClient = Required<
-    NonNullable<DevServerConfiguration['client']>
-  >;
-  type DevServerStatic = Required<NonNullable<Static>>;
+  type DevServerClient = {
+    logging?: 'log' | 'info' | 'warn' | 'error' | 'none' | 'verbose';
+    overlay?: boolean | { error: boolean, warn: boolean };
+    progress?: boolean;
+    reconnect?: boolean | number;
+    webSocketTransport?: 'ws' | 'sockjs' | string;
+    webSocketURL?: string | object;
+  }
+  
+  type DevServerStatic = {
+    directory?: string;
+    staticOptions?: object;
+    publicPath?: string;
+    serveIndex?: boolean;
+    watch?: boolean | object;
+  }
 
+  // await for @types/webpack-dev-server update do v4 to remove all any
   class DevServer extends ChainedMap<Config> {
     allowedHosts: TypedChainedSet<this, string>;
     client: TypedChainedMap<this, DevServerClient>;
@@ -265,24 +280,78 @@ declare namespace Config {
     historyApiFallback(
       value: DevServerConfiguration['historyApiFallback'],
     ): this;
-    host(value: DevServerConfiguration['host']): this;
-    hot(value: DevServerConfiguration['hot']): this;
-    ipc(value: DevServerConfiguration['ipc']): this;
-    liveReload(value: DevServerConfiguration['liveReload']): this;
-    magicHtml(value: DevServerConfiguration['magicHtml']): this;
-    onAfterSetupMiddleware(
-      value: DevServerConfiguration['onAfterSetupMiddleware'],
+    compress(value: boolean): this;
+    contentBase(value: boolean | string | string[]): this;
+    contentBasePublicPath(value: string): this;
+    disableHostCheck(value: boolean): this;
+    filename(value: string): this;
+    headers(value: { [header: string]: string }): this;
+    historyApiFallback(value: boolean | any): this;
+    host(value: string): this;
+    hot(value: boolean | 'only'): this;
+    hotOnly(value: boolean): this;
+    http2(value: boolean): this;
+    https(value: boolean | https.ServerOptions): this;
+    index(value: string): this;
+    injectClient(value: boolean | ((compiler: Compiler) => boolean)): this;
+    injectHot(value: boolean | ((compiler: Compiler) => boolean)): this;
+    inline(value: boolean): this;
+    lazy(value: boolean): this;
+    liveReload(value: boolean): this;
+    mimeTypes(value: Object): this;
+    noInfo(value: boolean): this;
+    onListening(value: (server: any) => void): this;
+    open(value: boolean): this;
+    openPage(value: string | string[]): this;
+    overlay(value: boolean | { warnings?: boolean; errors?: boolean }): this;
+    pfx(value: string): this;
+    pfxPassphrase(value: string): this;
+    port(value: number): this;
+    progress(value: boolean): this;
+    proxy(value: any): this;
+    public(value: string): this;
+    publicPath(publicPath: string): this;
+    quiet(value: boolean): this;
+    serveIndex(value: boolean): this;
+    setup(value: (expressApp: any) => void): this;
+    socket(value: string): this;
+    sockHost(value: string): this;
+    sockPath(value: string): this;
+    sockPort(value: number): this;
+    staticOptions(value: any): this;
+    stats(value: Configuration['stats']): this;
+    stdin(value: boolean): this;
+    transportMode(
+      value:
+        | 'sockjs'
+        | 'ws'
+        | {
+            server: 'ws';
+            client: object;
+          }
+        | {
+            client: 'sockjs';
+            server: object;
+          }
+        | {
+            client: object;
+            server: object;
+          },
     ): this;
-    onBeforeSetupMiddleware(
-      value: DevServerConfiguration['onBeforeSetupMiddleware'],
-    ): this;
-    onListening(value: DevServerConfiguration['onListening']): this;
-    open(value: DevServerConfiguration['open']): this;
-    port(value: DevServerConfiguration['port']): this;
-    proxy(value: DevServerConfiguration['proxy']): this;
-    setupExitSignals(value: DevServerConfiguration['setupExitSignals']): this;
-    watchFiles(value: DevServerConfiguration['watchFiles']): this;
-    webSocketServer(value: DevServerConfiguration['webSocketServer']): this;
+    useLocalIp(value: boolean): this;
+    watchContentBase(value: boolean): this;
+    watchOptions(value: Configuration['watchOptions']): this;
+    writeToDisk(value: boolean): this;
+    client: ChainedMap<this>;
+    devMiddleware(value: object): this;
+    ipc(value: boolean | string): this;
+    magicHtml(value: boolean): this;
+    server: ChainedMap<this>;
+    setupExitSignals(value: boolean): this;
+    setupMiddlewares(value: (middlewares: any, devServer: any) => void): this;
+    static: ChainedMap<this>;
+    watchFiles(value: string | object | Array<string> | Array<object>): this;
+    webSocketServer(value: string | Function | object): this;
   }
 
   type WebpackPerformance = Exclude<
@@ -332,6 +401,8 @@ declare namespace Config {
       { [key: string]: string | false | string[] }
     >;
     byDependency: TypedChainedMap<this, WebpackResolve['byDependency']>;
+    conditionNames: TypedChainedSet<this, WebpackResolve['conditionNames'][number]>;
+    extensionAlias: TypedChainedMap<this, WebpackResolve['extensionAlias']>;
 
     cachePredicate(value: WebpackResolve['cachePredicate']): this;
     cacheWithContext(value: WebpackResolve['cacheWithContext']): this;
@@ -340,6 +411,7 @@ declare namespace Config {
     unsafeCache(value: WebpackResolve['unsafeCache']): this;
     preferRelative(value: WebpackResolve['preferRelative']): this;
     preferAbsolute(value: WebpackResolve['preferAbsolute']): this;
+    useSyncFileSystemCalls(value: WebpackResolve['useSyncFileSystemCalls']): this;
 
     plugin(name: string): Plugin<this, ResolvePlugin>;
   }
@@ -374,6 +446,7 @@ declare namespace Config {
     resource(value: WebpackRuleSet['resource']): this;
     resourceQuery(value: WebpackRuleSet['resourceQuery']): this;
     sideEffects(value: WebpackRuleSet['sideEffects']): this;
+    scheme(value: WebpackRuleSet['scheme']): this;
     test(value: WebpackRuleSet['test']): this;
     type(value: WebpackRuleSet['type']): this;
 
