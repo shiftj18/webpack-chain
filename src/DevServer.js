@@ -1,58 +1,37 @@
 const ChainedMap = require('./ChainedMap');
 const ChainedSet = require('./ChainedSet');
+const ChainedValueMap = require('./ChainedValueMap');
 
 module.exports = class extends ChainedMap {
   constructor(parent) {
     super(parent);
 
     this.allowedHosts = new ChainedSet(this);
+    this.client = new ChainedMap(this);
+    this.static = new ChainedValueMap(this);
 
     this.extend([
-      'after',
-      'before',
       'bonjour',
-      'clientLogLevel',
-      'color',
       'compress',
-      'contentBase',
-      'disableHostCheck',
-      'filename',
+      'devMiddleware',
+      'http2',
+      'https',
       'headers',
       'historyApiFallback',
       'host',
       'hot',
-      'hotOnly',
-      'http2',
-      'https',
-      'index',
-      'info',
-      'inline',
-      'lazy',
-      'mimeTypes',
-      'noInfo',
+      'ipc',
+      'liveReload',
+      'magicHtml',
+      'onAfterSetupMiddleware',
+      'onBeforeSetupMiddleware',
+      'onListening',
       'open',
-      'openPage',
-      'overlay',
-      'pfx',
-      'pfxPassphrase',
       'port',
       'proxy',
-      'progress',
-      'public',
-      'publicPath',
-      'quiet',
-      'setup',
-      'socket',
-      'sockHost',
-      'sockPath',
-      'sockPort',
-      'staticOptions',
-      'stats',
-      'stdin',
-      'useLocalIp',
-      'watchContentBase',
-      'watchOptions',
-      'writeToDisk',
+      'setupExitSignals',
+      'watchFiles',
+      'webSocketServer',
     ]);
   }
 
@@ -60,6 +39,8 @@ module.exports = class extends ChainedMap {
     return this.clean({
       allowedHosts: this.allowedHosts.values(),
       ...(this.entries() || {}),
+      client: this.client.entries(),
+      static: this.static.entries(),
     });
   }
 
