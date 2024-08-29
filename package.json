@@ -1,9 +1,9 @@
 {
-  "name": "webpack-chain",
-  "version": "7.0.0-dev",
+  "name": "webpack5p-chain",
+  "version": "7.0.1",
   "main": "src/Config.js",
   "typings": "types/index.d.ts",
-  "repository": "neutrinojs/webpack-chain",
+  "repository": "shiftj18/webpack-chain",
   "keywords": [
     "webpack",
     "config",
@@ -18,7 +18,7 @@
     "src",
     "types/*.d.ts"
   ],
-  "author": "Eli Perelman <eli@eliperelman.com>",
+  "author": "shiftj18 <stjkl@foxmail.com>",
   "license": "MPL-2.0",
   "scripts": {
     "fix": "yarn lint:fix && yarn style:fix",
@@ -36,10 +36,10 @@
     "javascript-stringify": "^2.0.1"
   },
   "devDependencies": {
-    "@types/enhanced-resolve": "^3.0.6",
-    "@types/tapable": "^1.0.6",
-    "@types/webpack": "^4.41.21",
+    "@types/webpack": "^5.0.0",
+    "@types/webpack-dev-server": "^4.1.0",
     "auto-changelog": "^2.2.0",
+    "enhanced-resolve": "^5.8.2",
     "eslint": "^8.0.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^8.0.0",
@@ -49,6 +49,9 @@
     "jest": "^27.0.0",
     "prettier": "^2.0.5",
     "typescript": "^4.0.0",
-    "webpack": "^4.43.0"
+    "webpack": "^5.0.0"
+  },
+  "resolutions": {
+    "@types/webpack": "^5.0.0"
   }
 }
