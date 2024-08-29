@@ -1063,7 +1063,6 @@ config.devServer.allowedHosts
 
 ```js
 config.devServer
-  .app(app)
   .bonjour(bonjour)
   .client(client)
   .compress(compress)
