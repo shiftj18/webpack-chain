@@ -38,7 +38,7 @@ declare namespace __Config {
     ): this;
   }
 
-  class ChainedMap<Parent> extends TypedChainedMap<Parent, any> {}
+  class ChainedMap<Parent> extends TypedChainedMap<Parent, any> { }
   class TypedChainedSet<Parent, Value> extends Chained<Parent> {
     add(value: Value): this;
     prepend(value: Value): this;
@@ -54,7 +54,7 @@ declare namespace __Config {
     ): this;
   }
 
-  class ChainedSet<Parent> extends TypedChainedSet<Parent, any> {}
+  class ChainedSet<Parent> extends TypedChainedSet<Parent, any> { }
 }
 
 type WebpackConfig = Required<Configuration>;
@@ -106,17 +106,17 @@ declare class Config extends __Config.ChainedMap<void> {
 }
 
 declare namespace Config {
-  class Chained<Parent> extends __Config.Chained<Parent> {}
+  class Chained<Parent> extends __Config.Chained<Parent> { }
   class TypedChainedMap<Parent, OptionsType> extends __Config.TypedChainedMap<
     Parent,
     OptionsType
-  > {}
-  class ChainedMap<Parent> extends __Config.TypedChainedMap<Parent, any> {}
+  > { }
+  class ChainedMap<Parent> extends __Config.TypedChainedMap<Parent, any> { }
   class TypedChainedSet<Parent, Value> extends __Config.TypedChainedSet<
     Parent,
     Value
-  > {}
-  class ChainedSet<Parent> extends __Config.TypedChainedSet<Parent, any> {}
+  > { }
+  class ChainedSet<Parent> extends __Config.TypedChainedSet<Parent, any> { }
 
   class Plugins<
     Parent,
@@ -124,7 +124,7 @@ declare namespace Config {
   > extends TypedChainedMap<
     Parent,
     { [key: string]: Plugin<Parent, PluginType> }
-  > {}
+  > { }
 
   class Plugin<Parent, PluginType extends WebpackPluginInstance | ResolvePlugin>
     extends ChainedMap<Parent>
@@ -159,7 +159,7 @@ declare namespace Config {
     string | string[] | Function
   >[string];
 
-  class EntryPoint extends TypedChainedSet<Config, WepackEntryObject> {}
+  class EntryPoint extends TypedChainedSet<Config, WepackEntryObject> { }
 
   type WebpackModule = Required<NonNullable<Configuration['module']>>;
 
@@ -254,15 +254,10 @@ declare namespace Config {
 
   class DevServer extends ChainedMap<Config> {
     allowedHosts: TypedChainedSet<this, string>;
-    client: TypedChainedMap<this, DevServerClient>;
-    static: TypedChainedMap<this, DevServerStatic> &
-      ((value: boolean | string | Array<string | Static>) => this);
-
     bonjour(value: DevServerConfiguration['bonjour']): this;
+    client: TypedChainedMap<this, DevServerClient>;
     compress(value: DevServerConfiguration['compress']): this;
     devMiddleware(value: DevServerConfiguration['devMiddleware']): this;
-    http2(value: DevServerConfiguration['http2']): this;
-    https(value: DevServerConfiguration['https']): this;
     headers(value: DevServerConfiguration['headers']): this;
     historyApiFallback(
       value: DevServerConfiguration['historyApiFallback'],
@@ -271,17 +266,12 @@ declare namespace Config {
     hot(value: DevServerConfiguration['hot']): this;
     ipc(value: DevServerConfiguration['ipc']): this;
     liveReload(value: DevServerConfiguration['liveReload']): this;
-    magicHtml(value: DevServerConfiguration['magicHtml']): this;
-    onAfterSetupMiddleware(
-      value: DevServerConfiguration['onAfterSetupMiddleware'],
-    ): this;
-    onBeforeSetupMiddleware(
-      value: DevServerConfiguration['onBeforeSetupMiddleware'],
-    ): this;
     onListening(value: DevServerConfiguration['onListening']): this;
     open(value: DevServerConfiguration['open']): this;
     port(value: DevServerConfiguration['port']): this;
     proxy(value: DevServerConfiguration['proxy']): this;
+    static: TypedChainedMap<this, DevServerStatic> &
+      ((value: boolean | string | Array<string | Static>) => this);
     server(value: DevServerConfiguration['server']): this;
     setupExitSignals(value: DevServerConfiguration['setupExitSignals']): this;
     setupMiddlewares(value: DevServerConfiguration['setupMiddlewares']): this;
@@ -559,7 +549,7 @@ declare namespace Config {
   interface PluginClass<
     PluginType extends WebpackPluginInstance | ResolvePlugin
   > {
-    new (...opts: any[]): PluginType;
+    new(...opts: any[]): PluginType;
   }
 
   interface Orderable {
