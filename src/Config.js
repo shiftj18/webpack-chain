@@ -33,7 +33,6 @@ module.exports = class extends ChainedMap {
     this.performance = new Performance(this);
     // https://webpack.js.org/configuration/node/
     this.node = new ChainedValueMap(this);
-
     this.extend([
       // https://webpack.js.org/configuration/entry-context/
       'context',
