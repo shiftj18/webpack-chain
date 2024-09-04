@@ -253,15 +253,15 @@ declare namespace Config {
   type DevServerStatic = Required<NonNullable<Static>>;
 
   class DevServer extends ChainedMap<Config> {
-    allowedHosts: TypedChainedSet<this, string>;
+    allowedHosts: TypedChainedSet<this, DevServerConfiguration['allowedHosts']>
+      & ((value: DevServerConfiguration['allowedHosts']) => this);
     bonjour(value: DevServerConfiguration['bonjour']): this;
-    client: TypedChainedMap<this, DevServerClient>;
+    client: TypedChainedMap<this, DevServerClient>
+      & ((value: DevServerConfiguration['client']) => this);
     compress(value: DevServerConfiguration['compress']): this;
     devMiddleware(value: DevServerConfiguration['devMiddleware']): this;
     headers(value: DevServerConfiguration['headers']): this;
-    historyApiFallback(
-      value: DevServerConfiguration['historyApiFallback'],
-    ): this;
+    historyApiFallback(value: DevServerConfiguration['historyApiFallback']): this;
     host(value: DevServerConfiguration['host']): this;
     hot(value: DevServerConfiguration['hot']): this;
     http2(value: DevServerConfiguration['http2']): this;
@@ -269,18 +269,14 @@ declare namespace Config {
     ipc(value: DevServerConfiguration['ipc']): this;
     liveReload(value: DevServerConfiguration['liveReload']): this;
     magicHtml(value: DevServerConfiguration['magicHtml']): this;
-    onAfterSetupMiddleware(
-      value: DevServerConfiguration['onAfterSetupMiddleware'],
-    ): this;
-    onBeforeSetupMiddleware(
-      value: DevServerConfiguration['onBeforeSetupMiddleware'],
-    ): this;
+    onAfterSetupMiddleware(value: DevServerConfiguration['onAfterSetupMiddleware']): this;
+    onBeforeSetupMiddleware(value: DevServerConfiguration['onBeforeSetupMiddleware']): this;
     onListening(value: DevServerConfiguration['onListening']): this;
     open(value: DevServerConfiguration['open']): this;
     port(value: DevServerConfiguration['port']): this;
     proxy(value: DevServerConfiguration['proxy']): this;
     static: TypedChainedMap<this, DevServerStatic> &
-      ((value: boolean | string | Array<string | Static>) => this);
+      ((value: DevServerConfiguration['static']) => this);
     server(value: DevServerConfiguration['server']): this;
     setupExitSignals(value: DevServerConfiguration['setupExitSignals']): this;
     setupMiddlewares(value: DevServerConfiguration['setupMiddlewares']): this;
