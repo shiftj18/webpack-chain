@@ -1,4 +1,5 @@
-# webpack-chain
+# webpack5p-chain
+> Frok from `webpack-chain`, and `webpack-5-chain`, support new features in webpack5 
 
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][npm-downloads]][npm-url]
