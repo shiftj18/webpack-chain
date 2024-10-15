@@ -1,11 +1,11 @@
 const ChainedMap = require('./ChainedMap');
-const ChainedSet = require('./ChainedSet');
 const ChainedValueMap = require('./ChainedValueMap');
+const ChainedValueSet = require('./ChainedValueSet');
 
 module.exports = class extends ChainedMap {
   constructor(parent) {
     super(parent);
-    this.allowedHosts = new ChainedSet(this);
+    this.allowedHosts = new ChainedValueSet(this);
     this.client = new ChainedMap(this);
     this.static = new ChainedValueMap(this);
     this.server = new ChainedValueMap(this);
